@@ -1,0 +1,39 @@
+{
+  "name": "analyze-markdown-for-blog-article",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "release": "npm-run-all -s clean build",
+    "test": "jest"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "markdown-it": "^9.1.0",
+    "remove-markdown": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.17",
+    "@types/lodash": "^4.14.136",
+    "@types/markdown-it": "^0.0.8",
+    "@types/remove-markdown": "^0.1.1",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jest": "^24.8.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.7.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  }
+}
