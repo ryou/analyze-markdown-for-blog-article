@@ -1,6 +1,7 @@
 import MarkdownIt from 'markdown-it'
 import remove from 'remove-markdown'
 
+// TODO: \nだけでなく、別の改行コードにも対応
 /**
  * 文字列を改行コードで分割し配列として返却
  *
@@ -33,6 +34,7 @@ export const splitStringByLength = (
     const regexPattern = new RegExp(`.{1,${length}}`, 'g')
     const splitArray = input.match(regexPattern)
     if (splitArray === null) {
+        // TODO: hogeはちょっと
         throw new Error('hoge')
     }
 
