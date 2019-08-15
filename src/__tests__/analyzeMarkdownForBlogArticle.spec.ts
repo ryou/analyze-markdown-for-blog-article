@@ -56,16 +56,10 @@ describe('extractFrontmatters', () => {
             '',
         ])
         expect(result).toEqual({
-            frontmatters: [
-                {
-                    key: 'created_at',
-                    value: '2019-08-14',
-                },
-                {
-                    key: 'author',
-                    value: 'ryou',
-                },
-            ],
+            frontmatters: {
+                created_at: '2019-08-14',
+                author: 'ryou',
+            },
             contentMarkdownArray: ['# title', ''],
         })
     })
@@ -73,7 +67,7 @@ describe('extractFrontmatters', () => {
     test('frontmatterが無い場合も正常動作する', () => {
         const result = extractFrontmatters(['# title', ''])
         expect(result).toEqual({
-            frontmatters: [],
+            frontmatters: {},
             contentMarkdownArray: ['# title', ''],
         })
     })
@@ -94,12 +88,9 @@ describe('analyzeMarkdownForBlogArticle', () => {
                 { previewLength: 10 }
             )
             expect(result).toEqual({
-                frontmatters: [
-                    {
-                        key: 'created_at',
-                        value: '2019-08-14',
-                    },
-                ],
+                frontmatters: {
+                    created_at: '2019-08-14',
+                },
                 title: 'title',
                 bodyHtml: '<h2>hoge</h2>\n<p>fugafuga</p>\n',
                 preview: 'hogefugafu',
@@ -111,7 +102,7 @@ describe('analyzeMarkdownForBlogArticle', () => {
         test('タイトルを正常に取得できている', () => {
             const result = analyzeMarkdownForBlogArticle('# title\n## hoge\n')
             expect(result).toEqual({
-                frontmatters: [],
+                frontmatters: {},
                 title: 'title',
                 bodyHtml: '<h2>hoge</h2>\n',
                 preview: null,
@@ -123,7 +114,7 @@ describe('analyzeMarkdownForBlogArticle', () => {
                 previewLength: 10,
             })
             expect(result).toEqual({
-                frontmatters: [],
+                frontmatters: {},
                 title: 'title',
                 bodyHtml: '',
                 preview: '',
@@ -136,7 +127,7 @@ describe('analyzeMarkdownForBlogArticle', () => {
                 { previewLength: 10 }
             )
             expect(result).toEqual({
-                frontmatters: [],
+                frontmatters: {},
                 title: 'title',
                 bodyHtml: '<h2>hoge</h2>\n<p>fugafuga</p>\n',
                 preview: 'hogefugafu',

@@ -8,17 +8,14 @@ import {
 import takeWhile from 'lodash/takeWhile'
 import dropWhile from 'lodash/dropWhile'
 
-interface Frontmatter {
-    key: string
-    value: string
-}
+type Frontmatters = { [key: string]: string }
 
 interface AnalyzeOption {
     previewLength: Number | null
 }
 
 interface AnalyzedData {
-    frontmatters: Frontmatter[]
+    frontmatters: Frontmatters
     title: string
     bodyHtml: string
     preview: string | null
@@ -66,12 +63,12 @@ export const splitStringArrayAtFirstItem = (
  */
 export const extractFrontmatters = (
     markdownArray: string[]
-): { frontmatters: Frontmatter[]; contentMarkdownArray: string[] } => {
+): { frontmatters: Frontmatters; contentMarkdownArray: string[] } => {
     const FRONTMATTER_KEYWORD = '---'
     const [firstLine, ...restLines] = markdownArray
     if (firstLine !== FRONTMATTER_KEYWORD) {
         return {
-            frontmatters: [],
+            frontmatters: {},
             contentMarkdownArray: markdownArray,
         }
     }
@@ -80,11 +77,11 @@ export const extractFrontmatters = (
         frontmatterStringArray,
         contentMarkdownArray,
     ] = splitStringArrayAtFirstItem(restLines, FRONTMATTER_KEYWORD)
-    const frontmatters: Frontmatter[] = []
+    const frontmatters: Frontmatters = {}
     frontmatterStringArray.forEach(item => {
         // TODO: Frontmatterの形式に則っていなかった場合の対応が必要
         const [key, value] = item.split(': ')
-        frontmatters.push({ key, value })
+        frontmatters[key] = value
     })
 
     return {
