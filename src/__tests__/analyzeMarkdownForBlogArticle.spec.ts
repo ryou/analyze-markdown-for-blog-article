@@ -78,6 +78,11 @@ describe('calcPreviewFromBodyMarkdown', () => {
         const result = calcPreviewFromBodyMarkdown('## hoge\nfugafuga', 10)
         expect(result).toBe('hogefugafu')
     })
+
+    test('２連続の改行にも対応', () => {
+        const result = calcPreviewFromBodyMarkdown('## hoge\n\nfugafuga', 10)
+        expect(result).toBe('hogefugafu')
+    })
 })
 
 describe('analyzeMarkdownForBlogArticle', () => {

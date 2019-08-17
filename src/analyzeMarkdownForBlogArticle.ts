@@ -101,7 +101,7 @@ export const calcPreviewFromBodyMarkdown = (
     bodyMarkdown: string,
     previewLength: Number
 ) => {
-    const bodyText = removeMarkdown(bodyMarkdown.replace('\n', ''))
+    const bodyText = removeMarkdown(bodyMarkdown.replace(/\n/g, ''))
     if (bodyText.length <= 0) {
         return ''
     }
