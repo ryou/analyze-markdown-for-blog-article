@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var markdown_it_1 = __importDefault(require("markdown-it"));
 var remove_markdown_1 = __importDefault(require("remove-markdown"));
+// TODO: \nだけでなく、別の改行コードにも対応
 /**
  * 文字列を改行コードで分割し配列として返却
  *
@@ -32,6 +33,7 @@ exports.splitStringByLength = function (input, length) {
     var regexPattern = new RegExp(".{1," + length + "}", 'g');
     var splitArray = input.match(regexPattern);
     if (splitArray === null) {
+        // TODO: hogeはちょっと
         throw new Error('hoge');
     }
     return splitArray;

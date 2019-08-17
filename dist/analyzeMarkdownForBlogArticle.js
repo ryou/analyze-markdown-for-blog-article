@@ -41,16 +41,16 @@ exports.extractFrontmatters = function (markdownArray) {
     var firstLine = markdownArray[0], restLines = markdownArray.slice(1);
     if (firstLine !== FRONTMATTER_KEYWORD) {
         return {
-            frontmatters: [],
+            frontmatters: {},
             contentMarkdownArray: markdownArray,
         };
     }
     var _a = exports.splitStringArrayAtFirstItem(restLines, FRONTMATTER_KEYWORD), frontmatterStringArray = _a[0], contentMarkdownArray = _a[1];
-    var frontmatters = [];
+    var frontmatters = {};
     frontmatterStringArray.forEach(function (item) {
         // TODO: Frontmatterの形式に則っていなかった場合の対応が必要
         var _a = item.split(': '), key = _a[0], value = _a[1];
-        frontmatters.push({ key: key, value: value });
+        frontmatters[key] = value;
     });
     return {
         frontmatters: frontmatters,
@@ -65,12 +65,18 @@ exports.extractFrontmatters = function (markdownArray) {
  * @param previewLength
  */
 exports.calcPreviewFromBodyMarkdown = function (bodyMarkdown, previewLength) {
-    var bodyText = stringUtils_1.removeMarkdown(bodyMarkdown.replace('\n', ''));
+    var bodyText = stringUtils_1.removeMarkdown(bodyMarkdown.replace(/\n/g, ''));
     if (bodyText.length <= 0) {
         return '';
     }
     return stringUtils_1.splitStringByLength(bodyText, previewLength)[0];
 };
+/**
+ * マークダウン文字列をブログ記事として扱いやすい形に分解する
+ *
+ * @param markdown
+ * @param option
+ */
 exports.analyzeMarkdownForBlogArticle = function (markdown, option) {
     if (option === void 0) { option = { previewLength: null }; }
     var markdownArray = stringUtils_1.stringToArrayByLine(markdown);

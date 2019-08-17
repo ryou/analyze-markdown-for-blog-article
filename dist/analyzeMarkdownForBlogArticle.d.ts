@@ -1,12 +1,11 @@
-interface Frontmatter {
-    key: string;
-    value: string;
-}
+declare type Frontmatters = {
+    [key: string]: string;
+};
 interface AnalyzeOption {
     previewLength: Number | null;
 }
 interface AnalyzedData {
-    frontmatters: Frontmatter[];
+    frontmatters: Frontmatters;
     title: string;
     bodyHtml: string;
     preview: string | null;
@@ -30,7 +29,7 @@ export declare const splitStringArrayAtFirstItem: (stringArray: string[], needle
  * @param markdownArray
  */
 export declare const extractFrontmatters: (markdownArray: string[]) => {
-    frontmatters: Frontmatter[];
+    frontmatters: Frontmatters;
     contentMarkdownArray: string[];
 };
 /**
@@ -40,5 +39,11 @@ export declare const extractFrontmatters: (markdownArray: string[]) => {
  * @param previewLength
  */
 export declare const calcPreviewFromBodyMarkdown: (bodyMarkdown: string, previewLength: Number) => string;
+/**
+ * マークダウン文字列をブログ記事として扱いやすい形に分解する
+ *
+ * @param markdown
+ * @param option
+ */
 export declare const analyzeMarkdownForBlogArticle: (markdown: string, option?: AnalyzeOption) => AnalyzedData;
 export {};
