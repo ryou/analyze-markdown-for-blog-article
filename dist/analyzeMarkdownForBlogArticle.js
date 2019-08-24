@@ -65,11 +65,12 @@ exports.extractFrontmatters = function (markdownArray) {
  * @param previewLength
  */
 exports.calcPreviewFromBodyMarkdown = function (bodyMarkdown, previewLength) {
-    var bodyText = stringUtils_1.removeMarkdown(bodyMarkdown.replace(/\n/g, ''));
+    var bodyText = stringUtils_1.removeMarkdown(bodyMarkdown);
     if (bodyText.length <= 0) {
         return '';
     }
-    return stringUtils_1.splitStringByLength(bodyText, previewLength)[0];
+    var singleLineBodyText = bodyText.replace(/\n/g, '');
+    return stringUtils_1.splitStringByLength(singleLineBodyText, previewLength)[0];
 };
 /**
  * マークダウン文字列をブログ記事として扱いやすい形に分解する
