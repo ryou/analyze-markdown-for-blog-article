@@ -75,7 +75,7 @@ describe('extractFrontmatters', () => {
 
 describe('calcPreviewFromBodyMarkdown', () => {
     test('previewの算出が正常にできている', () => {
-        const result = calcPreviewFromBodyMarkdown('## hoge\nfugafuga', 10)
+        const result = calcPreviewFromBodyMarkdown('## hoge\n## fugafuga', 10)
         expect(result).toBe('hogefugafu')
     })
 
